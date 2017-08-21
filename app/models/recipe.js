@@ -1,9 +1,10 @@
-var mongoose = require('mongoose'),
-  Schema = mongoose.Schema
+const mongoose = require('mongoose'),
+const Schema = mongoose.Schema
 
 var RecipeSchema = new Schema({
   title: String,
-  vidUrl: String
+  vidUrl: String,
+  steps: [String]
 })
 
 RecipeSchema.virtual('date')
