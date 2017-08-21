@@ -23,30 +23,16 @@ router.get('/', function (req, res, next) {
       var $stepText = $(this).find('p')
       return $stepText.text()
     }).get()
-    
-    return res.send({
+
+    Recipe.create({
       title,
       vidUrl,
       steps
-    })
+    }, function (err, createdRecipe) {
+      if (err) return next(err)
+      return res.send(createdRecipe)
+    }) // close created
 
-    // var thisRecipe = new Recipe({
-    //   title: title,
-    //   vidUrl: vidUrl
-    // })
-    //
-    // thisRecipe.save(function(err, savedRecipe) {
-    //   if (err) return next(err)
-    //   res.send(savedRecipe)
-    // })
+  }) // close request
 
-  })
-
-  // Recipe.find(function (err, recipes) {
-  //   if (err) return next(err);
-  //   res.render('index', {
-  //     title: 'Scrapie scrape',
-  //     articles: articles
-  //   });
-  // });
-})
+}) // close router.get
